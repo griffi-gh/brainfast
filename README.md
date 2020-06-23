@@ -5,10 +5,9 @@ Generates "readable" code
 
 Output for ```+[++.]```:
 ```lua
-local p,ip,m,o=1,1,{}
+local p,ip,m=1,1,{}
 setmetatable(m,{__index=function() return 0 end})
-local i=''
-local o=''
+local i,o='',''
 
 m[p]=(m[p]+1)%256
 while m[p]~=0 do
