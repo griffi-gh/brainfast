@@ -30,10 +30,9 @@ local function bf(code,input)
   
   do --assemble code
     out=(
-      "local p,ip,m,o=1,1,{}\n"..
+      "local p,ip,m=1,1,{}\n"..
       "setmetatable(m,{__index=function() return 0 end})\n"..
-      "local i='"..(input or'').."'\n"..
-      "local o=''\n\n"
+      "local i,o='"..(input or'').."',''\n\n"
     )
   
     local tab=0
