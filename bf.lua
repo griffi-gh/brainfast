@@ -5,14 +5,14 @@ local function bf(code,input)
   local seq={}
   local out=''
   local o={
-    ['+']={code='m[p]=(m[p]+*r*)%256'},
-    ['-']={code='m[p]=(m[p]-*r*)%256'},
-    ['>']={code='p=p+*r*'},
-    ['<']={code='p=p-*r*'},
-    ['.']={code='o=o..(string.rep(string.char(m[p]),*r*))'},
-    [',']={code='m[p]=i:byte(ip)\n\tip=ip+1',r=true},
-    ['[']={code='while m[p]~=0 do',r=true,t=1},
-    [']']={code='end',r=true,t=-1},
+    ['+']={code='m[p]=(m[p]+*r*)%256 *c*'},
+    ['-']={code='m[p]=(m[p]-*r*)%256 *c*'},
+    ['>']={code='p=p+*r* --(>)'},
+    ['<']={code='p=p-*r* --(<)'},
+    ['.']={code='o=o..(string.rep(string.char(m[p]),*r*)) *c*'},
+    [',']={code='m[p]=i:byte(ip) *c*\n\tip=ip+1',r=true},
+    ['[']={code='while m[p]~=0 do *c*',r=true,t=1},
+    [']']={code='end *c*',r=true,t=-1},
   }
   
   do --search for repeated symbols
@@ -48,6 +48,7 @@ local function bf(code,input)
           lcode=lcode:gsub("%*r%*",tostring(v.r))
         end
         lcode=lcode:gsub("\t",ltab)
+        lcode=lcode:gsub("%*c%*","--("..v.c..")")
         
         out=out..(ltab..lcode..'\n')
         tab=tab+math.max(toadd,0)
