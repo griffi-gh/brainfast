@@ -19,13 +19,13 @@ local function bf(code,input)
     local c,r,s
     for i=1,code:len()+1 do
       s=code:sub(i,i)
-      if o[s] then
-        if c==s and not(o[s].r) then
-          r=r+1
-        else
+      if o[s] and c==s and not(o[s].r) then
+        r=r+1
+      else
+        if o[c] then
           table.insert(seq,{c=c,r=r})
-          r,c=1,s
         end
+        r,c=1,s
       end
     end
   end
