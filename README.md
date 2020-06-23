@@ -3,7 +3,7 @@ Brainfuck lua converter
 
 ## usage
 ```lua
-require'bf'
+bf=require'bf'
 bf( [code,string] , [input,string,optional] )  --returns output
 ```
 ## example
