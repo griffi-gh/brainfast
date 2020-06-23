@@ -11,7 +11,7 @@ local i,o='',''
 
 m[p]=(m[p]+1)%256 --(+)
 while m[p]~=0 do --([)
-    m[p]=(m[p]+2)%256 --(+)
+    m[p]=(m[p]+2)%256 --(++)
     o=o..(string.rep(string.char(m[p]),1)) --(.)
 end --(])
 
