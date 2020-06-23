@@ -19,11 +19,13 @@ local function bf(code,input)
     local c,r,s
     for i=1,code:len()+1 do
       s=code:sub(i,i)
-      if c==s and not(o[s].r) then
-        r=r+1
-      else
-        table.insert(seq,{c=c,r=r})
-        r,c=1,s
+      if o[s] then
+        if c==s and not(o[s].r) then
+          r=r+1
+        else
+          table.insert(seq,{c=c,r=r})
+          r,c=1,s
+        end
       end
     end
   end
@@ -48,7 +50,8 @@ local function bf(code,input)
           lcode=lcode:gsub("%*r%*",tostring(v.r))
         end
         lcode=lcode:gsub("\t",ltab)
-        lcode=lcode:gsub("%*c%*","--("..v.c..")")
+        
+        lcode=lcode:gsub("%*c%*",'--('..string.rep(v.c,v.r)..')')
         
         out=out..(ltab..lcode..'\n')
         tab=tab+math.max(toadd,0)
