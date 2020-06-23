@@ -1,12 +1,12 @@
-# brainfast
+# Brainfast
 Brainfuck lua converter
 
-## usage
+## Usage
 ```lua
 bf=require'bf'
 bf( [code,string] , [input,string,optional] )  --returns output
 ```
-## example
+## Example
 ```lua
 local bf=require'bf' --load module
 local luaCode = bf("-[------->+<]>-.--[-->+++<]>.") --convert bf code to lua code
