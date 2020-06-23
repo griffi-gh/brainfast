@@ -1,6 +1,23 @@
 # Brainfast
 Brainfuck lua converter
 
+Generates "readable" code
+
+Output for ```+[++.]```:
+```lua
+local p,ip,m,o=1,1,{}
+setmetatable(m,{__index=function() return 0 end})
+local i=''
+local o=''
+
+m[p]=(m[p]+1)%256
+while m[p]~=0 do
+    m[p]=(m[p]+2)%256
+    o=o..(string.rep(string.char(m[p]),1))
+end
+
+return o
+```
 ## Usage
 ```lua
 bf=require'bf'
