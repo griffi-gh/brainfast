@@ -13,5 +13,5 @@ local luaCode = bf("-[------->+<]>-.--[-->+++<]>.") --convert bf code to lua cod
 local output = load(luaCode)() --load lua code and save output
 print(output) --print output
 ```
-
+**Output:** Hi
 
